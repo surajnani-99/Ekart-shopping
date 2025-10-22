@@ -1,0 +1,28 @@
+trigger:
+  branches:
+    include:
+    - main
+stages:
+- stage: __default
+  jobs:
+  - job: Job
+    pool:
+      name: 'demo'
+    steps:
+    - task: Maven@4
+      inputs:
+        azureSubscription: 'Azure for Students(606f96c4-f173-4796-bfb1-845053fc158b)'
+        mavenPomFile: 'pom.xml'
+        publishJUnitResults: true
+        testResultsFiles: '**/surefire-reports/TEST-*.xml'
+        javaHomeOption: 'JDKVersion'
+        mavenVersionOption: 'Default'
+        mavenAuthenticateFeed: false
+        effectivePomSkip: false
+        sonarQubeRunAnalysis: false
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: '$(System.DefaultWorkingDirectory)/target'
+        ArtifactName: 'drop'
+        publishLocation: 'Container'
+
