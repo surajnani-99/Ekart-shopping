@@ -11,7 +11,7 @@ stages:
     steps:
     - task: Maven@4
       inputs:
-        azureSubscription: 'Azure for Students(606f96c4-f173-4796-bfb1-845053fc158b)'
+        azureSubscription: 'XXXXXXXXXXXXXXXXXXXXXXxxxxxxxx'
         mavenPomFile: 'pom.xml'
         publishJUnitResults: true
         testResultsFiles: '**/surefire-reports/TEST-*.xml'
